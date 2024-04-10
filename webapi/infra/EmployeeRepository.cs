@@ -19,5 +19,10 @@ namespace webapi.infra
         {
             return _context.Employees.ToList();
         }
+
+        public Employee? GetEmployeeById(int id)
+        {
+            return _context.Employees.Find(id);
+        }
     }
 }

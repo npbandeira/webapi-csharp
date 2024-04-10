@@ -10,5 +10,6 @@ namespace webapi.models
 
         void Add(Employee employee);
         List<Employee> Get();
+        Employee? GetEmployeeById(int id);
     }
 }
