@@ -33,9 +33,9 @@ namespace webapi.Controller
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(int pageNumber, int pageQuantity)
         {
-            List<Employee> employee = _employeeRepository.Get();
+            List<Employee> employee = _employeeRepository.Get(pageNumber, pageQuantity);
             return Ok(employee);
         }
 
