@@ -8,16 +8,17 @@ using webapi.ViewModel;
 namespace webapi.Controller
 {
     [ApiController]
-    [Authorize]
+    // [Authorize]
     [Route("api/v1/employee")]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly ILogger<EmployeeController> _logger;
 
-        public EmployeeController(IEmployeeRepository employeeRepository)
+        public EmployeeController(IEmployeeRepository employeeRepository, ILogger<EmployeeController> logger)
         {
-            // Dependency Injection
             _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpPost]
@@ -35,7 +36,9 @@ namespace webapi.Controller
         [HttpGet]
         public IActionResult Get(int pageNumber, int pageQuantity)
         {
+            throw new Exception("Error de teste");
             List<Employee> employee = _employeeRepository.Get(pageNumber, pageQuantity);
+            _logger.LogInformation("Employee with page number " + employee.Count);
             return Ok(employee);
         }
 
